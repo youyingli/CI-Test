@@ -1,0 +1,17 @@
+name: myenv
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10
+  - numpy
+  - pandas
+  - matplotlib
+  - pytorch
+  - pytorch-cuda=12.1
+  - pyyaml
+  - scikit-learn
+  - rdkit
+  - pytest
