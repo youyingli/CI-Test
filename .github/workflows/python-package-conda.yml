@@ -1,7 +1,9 @@
 name: Python Package using Conda
 
-on: [pull_request]
-
+on:
+  pull_request:
+    branches: [ main ]
+    
 jobs:
   env-setup-test:
     runs-on: ubuntu-latest
