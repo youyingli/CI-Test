@@ -22,16 +22,17 @@ WORKDIR /app
 
 # 複製 environment.yml 和程式碼到容器中
 COPY environment.yml /app/
-COPY . /app/
+COPY . /app/CI_Test/.
 
 # 使用 env.yml 創建 Conda 環境
 RUN /opt/miniconda/bin/conda env create -f environment.yml
 
 # 設置工作目錄
-WORKDIR /app
+WORKDIR /app/CI_Test
 
 # 設定 PATH 讓 Conda 環境在容器內可用
 ENV PATH /opt/miniconda/envs/myenv/bin:$PATH
+ENV PYTHONPATH /app:$PYTHONPATH
 
 # 執行 pytest 測試
 CMD ["/opt/miniconda/envs/myenv/bin/pytest", "tests/"]
