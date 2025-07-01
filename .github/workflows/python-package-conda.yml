@@ -44,10 +44,11 @@ jobs:
         environment-file: environment.yml
         activate-environment: myenv
 
-    - name: Set up Miniconda
+    - name: Set up Miniconda v2
       run: |
         conda list
         conda info
+        conda install pytest
 
     #- name: Add conda to system path
     #  run: |
@@ -86,5 +87,5 @@ jobs:
 
     - name: Test with pytest
       run: |
-    
+        conda install pytest
         pytest
