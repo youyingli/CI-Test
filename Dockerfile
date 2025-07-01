@@ -3,7 +3,7 @@ FROM almalinux:9
 
 # 安裝必要的依賴
 RUN dnf -y update && dnf -y install \
-    curl \
+#    curl \
     git \
     sudo \
     bzip2 \
