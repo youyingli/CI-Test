@@ -29,4 +29,4 @@ jobs:
 
     - name: Run pytest in Docker
       run: |
-        docker run --rm my-docker-image pytest tests/
+        docker run --rm my-docker-image
