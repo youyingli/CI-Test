@@ -39,16 +39,12 @@ jobs:
     - name: Set up Miniconda
       uses: conda-incubator/setup-miniconda@v3
       with:
-        auto-update-conda: false
         python-version: '3.10'
         environment-file: environment.yml
         activate-environment: myenv
-
-      run: |
-        conda list
-        conda info
         
     - name: Set up Miniconda v2
+      shell: bash -el {0}
       run: |
         conda list
         conda info
@@ -81,7 +77,7 @@ jobs:
         python-version: '3.10'
         environment-file: environment.yml
         activate-environment: myenv
-        auto-activate-base: false
+
     #- name: Add conda to system path
     # run: |
     #    # $CONDA is an environment variable pointing to the root of the miniconda directory
@@ -91,6 +87,7 @@ jobs:
     #   conda env create --file environment.yml
 
     - name: Test with pytest
+      shell: bash -el {0}
       run: |
         conda info
         conda install pytest
@@ -98,5 +95,6 @@ jobs:
         conda list pytest
 
     - name: Test with pytest v2
+      shell: bash -el {0}
       run: | 
         pytest
