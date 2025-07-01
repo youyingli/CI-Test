@@ -87,5 +87,11 @@ jobs:
 
     - name: Test with pytest
       run: |
+        conda info
         conda install pytest
+        conda list
+        conda list pytest
+
+    - name: Test with pytest v2
+      run: | 
         pytest
