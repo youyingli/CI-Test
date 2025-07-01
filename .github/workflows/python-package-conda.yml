@@ -43,8 +43,11 @@ jobs:
         python-version: '3.10'
         environment-file: environment.yml
         activate-environment: myenv
-        auto-activate-base: false
 
+      run: |
+        conda list
+        conda info
+        
     - name: Set up Miniconda v2
       run: |
         conda list
