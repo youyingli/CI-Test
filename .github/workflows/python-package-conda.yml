@@ -7,7 +7,7 @@ on:
     
 jobs:
   code-syntax-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
   env-setup-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: code-syntax-test
     strategy:
       max-parallel: 5
@@ -59,7 +59,7 @@ jobs:
     #    conda env create --file environment.yml
     
   run-tests:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: env-setup-test
 
     steps:
