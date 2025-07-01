@@ -80,7 +80,5 @@ jobs:
 
     - name: Test with pytest
       run: |
-        conda init
-        conda activate myenv
     
         pytest
