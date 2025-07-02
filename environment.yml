@@ -5,12 +5,12 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python>=3.10
+  - python=3.10
   - numpy
   - pandas
   - matplotlib
   - pytorch
-  - pytorch-cuda=12.1
+  - pytorch-cuda=12.4
   - pyyaml
   - scikit-learn
   - rdkit
