@@ -16,6 +16,7 @@ jobs:
     services:
       # Docker 服務配置，確保 Docker 運行
       docker:
+      
         image: docker:19.03.12
         options: --privileged
 
