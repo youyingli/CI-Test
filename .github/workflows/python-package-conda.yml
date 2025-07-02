@@ -61,3 +61,17 @@ jobs:
       run: |
         docker run --rm my-docker-image
 
+    - name: Post summary to PR
+      if: github.event_name == 'pull_request'
+      uses: peter-evans/create-or-update-comment@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        issue-number: ${{ github.event.pull_request.number }}
+        body: |
+          :white_check_mark: Test was finished:
+          
+          - Test package：pytest
+          - Status：${{ steps.check_status.outputs.status == 'passed' && ':white_check_mark: Test is successful ! ' || ':x: Test is Failed !' }}
+          - Commit：`${{ github.sha }}`
+          - Branch：`${{ github.head_ref }}`
+
