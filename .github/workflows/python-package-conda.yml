@@ -34,6 +34,14 @@ jobs:
 
 
   run-tests:
+    if: |
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, 'Please test') &&
+      (
+        github.event.comment.author_association == 'OWNER' ||
+        github.event.comment.author_association == 'MEMBER' ||
+        github.event.comment.author_association == 'COLLABORATOR'
+      )
     runs-on: self-hosted
     needs: code-syntax-test
 
