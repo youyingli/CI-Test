@@ -1,14 +1,17 @@
 name: Test with Docker and Miniconda
 
 on:
-
   pull_request:
     branches:
       - main
-
+      
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+  
 jobs:
   code-syntax-test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     services:
       # Docker 服務配置，確保 Docker 運行
@@ -29,7 +32,7 @@ jobs:
 
 
   run-tests:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: code-syntax-test
 
     services:
