@@ -1,7 +1,7 @@
 import numpy as np
 
 # utils.data_preprocessing
-from Open_Polymer_Prediction.utils.data_preprocessing import *
+from CI_Test.utils.data_preprocessing import *
 
 def test_smiles_to_graph():
 

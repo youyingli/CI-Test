@@ -1,0 +1,60 @@
+name: run-tests
+
+on:
+  issue_comment:
+    types: [created]
+    
+concurrency:
+  group: pr-${{ github.event.issue.number }}
+  cancel-in-progress: true
+  
+jobs:
+  run-tests:
+    if: |
+      github.event.issue.pull_request &&
+      contains(github.event.comment.body, 'Please test') &&
+      (
+        github.event.comment.author_association == 'OWNER' ||
+        github.event.comment.author_association == 'MEMBER' ||
+        github.event.comment.author_association == 'COLLABORATOR'
+      )
+    runs-on: self-hosted
+
+
+    #services:
+
+    #  docker:
+    #    image: docker:19.03.12
+    #    options: --privileged
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    #- name: Set up Docker Buildx
+    #  uses: docker/setup-buildx-action@v3
+
+    - name: Build Docker image
+      run: |
+        docker build -f Dockerfiles/Dockerfile.run-tests -t my-docker-image .
+
+    - name: Run pytest in Docker
+      run: |
+        docker run --rm my-docker-image
+
+    - name: Run pytest in Docker
+      run: |
+        docker run --rm my-docker-image
+
+  cleanup:
+    if: ${{ always() }}
+    runs-on: self-hosted
+    needs: run-tests
+    steps:
+      - name: Cleanup docker
+        run: |
+          docker container prune -f
+          docker volume prune -f
+          docker image prune -f
+          docker builder prune -f
+
