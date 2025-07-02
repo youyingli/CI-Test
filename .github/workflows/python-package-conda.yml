@@ -64,11 +64,8 @@ jobs:
 
     - name: Run pytest in Docker
       run: |
-        docker run --rm my-docker-image
+        docker run --gpus all --rm my-docker-image
 
-    - name: Run pytest in Docker
-      run: |
-        docker run --rm my-docker-image
 
   cleanup:
     if: ${{ always() }}
