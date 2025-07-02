@@ -26,9 +26,8 @@ WORKDIR /app
 # Copy the github repo to the docker container
 COPY . /app/.
 
-# 設定 PATH 讓 Conda 環境在容器內可用
+# Set PATH to let Conda available in the docker container
 ENV PATH /opt/miniconda/envs/myenv/bin:$PATH
-ENV PYTHONPATH /app:$PYTHONPATH
 
-# 執行 pytest 測試
+# execute pytest
 CMD ["flake8", ".", "--count", "--select=E9,F63,F7,F82", "--show-source", "--statistics"]
