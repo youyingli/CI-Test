@@ -53,6 +53,9 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -f Dockerfiles/Dockerfile.run-tests -t my-docker-image .
+        
+    - name: Show GPU
+      run: nvidia-smi
 
     - name: Run pytest in Docker
       run: |
