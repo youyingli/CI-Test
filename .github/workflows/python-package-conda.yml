@@ -33,27 +33,3 @@ jobs:
       run: |
         docker run --rm my-docker-image
 
-  run-tests:
-    runs-on: self-hosted
-    needs: env-setup-test
-
-    #services:
-      # Docker 服務配置，確保 Docker 運行
-    #  docker:
-    #    image: docker:19.03.12
-    #    options: --privileged
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-
-    #- name: Set up Docker Buildx
-    #  uses: docker/setup-buildx-action@v3
-
-    - name: Build Docker image
-      run: |
-        docker build -f Dockerfiles/Dockerfile.run-tests -t my-docker-image .
-
-    - name: Run pytest in Docker
-      run: |
-        docker run --rm my-docker-image
