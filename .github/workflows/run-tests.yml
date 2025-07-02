@@ -1,38 +1,14 @@
-name: Test with Docker and Miniconda
+name: run-tests
 
 on:
-  pull_request:
-    branches:
-      - main
-
-
+  issue_comment:
+    types: [created]
+    
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: pr-${{ github.event.pull_request.number }}
   cancel-in-progress: true
   
 jobs:
-  code-syntax-test:
-    runs-on: self-hosted
-
-    #services:
-      # Docker 服務配置，確保 Docker 運行
-    #  docker:
-      
-    #    image: docker:19.03.12
-    #    options: --privileged
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    #- name: Set up Docker Buildx
-    #  uses: docker/setup-buildx-action@v3
-
-    - name: Build Docker image
-      run: |
-        docker build -f Dockerfiles/Dockerfile.code-syntax-test -t my-docker-image .
-
-
   run-tests:
     if: |
       github.event.issue.pull_request &&
@@ -46,7 +22,7 @@ jobs:
     needs: code-syntax-test
 
     #services:
-      # Docker 服務配置，確保 Docker 運行
+
     #  docker:
     #    image: docker:19.03.12
     #    options: --privileged
