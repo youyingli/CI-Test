@@ -7,10 +7,8 @@ on:
       - main
 
 jobs:
-  env-setup-test:
+  code-syntax-test:
     runs-on: ubuntu-latest
-
-    
 
     services:
       # Docker 服務配置，確保 Docker 運行
@@ -31,8 +29,8 @@ jobs:
 
 
   run-tests:
-    runs-on: self-hosted
-    needs: env-setup-test
+    runs-on: ubuntu-latest
+    needs: code-syntax-test
 
     services:
       # Docker 服務配置，確保 Docker 運行
