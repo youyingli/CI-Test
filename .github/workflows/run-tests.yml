@@ -19,7 +19,7 @@ jobs:
         github.event.comment.author_association == 'COLLABORATOR'
       )
     runs-on: self-hosted
-    needs: code-syntax-test
+
 
     #services:
 
