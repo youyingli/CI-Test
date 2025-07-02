@@ -27,7 +27,7 @@ jobs:
 
     - name: Build Docker image
       run: |
-        docker build -t -f Dockerfiles/Dockerfile.code-syntax-test my-docker-image .
+        docker build -f Dockerfiles/Dockerfile.code-syntax-test -t my-docker-image .
 
     - name: Run pytest in Docker
       run: |
