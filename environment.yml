@@ -9,9 +9,11 @@ dependencies:
   - numpy
   - pandas
   - matplotlib
+  - missingno
   - pytorch
   - pytorch-cuda=12.4
   - pyyaml
   - scikit-learn
+  - kaggle
   - rdkit
   - pytest
