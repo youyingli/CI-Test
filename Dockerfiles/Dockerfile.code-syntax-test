@@ -30,4 +30,4 @@ COPY . /app/.
 ENV PATH /opt/miniconda/envs/myenv/bin:$PATH
 
 # execute pytest
-CMD ["bash", "-e"]
+# CMD ["bash", "-e"]
