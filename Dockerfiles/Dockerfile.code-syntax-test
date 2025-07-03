@@ -1,0 +1,30 @@
+# Use AlmaLinux 9 image
+FROM almalinux:9
+
+# Install dependence
+RUN dnf -y update && dnf -y install \
+#    curl \
+    git \
+    sudo \
+    bzip2 \
+    && dnf clean all
+
+# Install Miniconda
+RUN curl -fsSL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o /tmp/miniconda.sh \
+    && bash /tmp/miniconda.sh -b -p /opt/miniconda \
+    && rm /tmp/miniconda.sh
+
+# Update conda
+RUN /opt/miniconda/bin/conda update -y conda
+
+# Build python 3.10 enviroment and install flake8 to check python syntax
+RUN /opt/miniconda/bin/conda create -n myenv python=3.10 flake8 -y
+
+# Set work directory
+WORKDIR /app
+
+# Copy the github repo to the docker container
+COPY . /app/.
+
+# Set PATH to let Conda available in the docker container
+ENV PATH /opt/miniconda/envs/myenv/bin:$PATH
