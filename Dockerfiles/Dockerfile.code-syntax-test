@@ -28,6 +28,3 @@ COPY . /app/.
 
 # Set PATH to let Conda available in the docker container
 ENV PATH /opt/miniconda/envs/myenv/bin:$PATH
-
-# execute pytest
-# CMD ["bash", "-e"]
